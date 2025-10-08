@@ -1,34 +1,35 @@
 import { useState } from "react";
-import SizeSelector from "./SizeSelector";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../features/cart/cartSlice";
+import { addToCart } from "../features/cart/cartSlice.js";
+import { useNavigate } from "react-router-dom";
+import SizeSelector from "./SizeSelector.jsx";
 
-export default function ProductCard({ product }){
-  const [size,setSize] = useState("M");
+export default function ProductCard({ product }) {
+  const [size, setSize] = useState("M");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleAdd = () => {
+    dispatch(addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image,
+      size
+    }));
+    navigate("/cart");
+  };
 
   return (
     <article className="card">
       <div className="img-wrap">
-        {/* Image gets a subtle zoom on hover via CSS */}
-        <img src={product.image} alt={product.title}/>
+        <img src={product.image} alt={product.title} />
       </div>
-      <h3 style={{margin:"10px 0 6px"}}>{product.title}</h3>
-      <p style={{color:"var(--muted)", margin:"0 0 8px"}}>{product.category}</p>
-      <p style={{fontWeight:700, margin:"0 0 8px"}}>${product.price}</p>
-
-      {/* Allow user to choose a size before adding to cart */}
-      <SizeSelector value={size} onChange={setSize}/>
-
-      {/* Primary button uses brand brown to match logo */}
-      <button
-        className="btn"
-        onClick={()=> dispatch(addToCart({
-          id:product.id, title:product.title, price:product.price, image:product.image, size
-        }))}
-      >
-        Add to Cart
-      </button>
+      <h3 style={{ margin: "10px 0 6px" }}>{product.title}</h3>
+      <p style={{ color: "var(--muted)", margin: "0 0 8px" }}>{product.category}</p>
+      <p style={{ fontWeight: 700, margin: "0 0 8px" }}>${product.price}</p>
+      <SizeSelector value={size} onChange={setSize} />
+      <button className="btn" onClick={handleAdd}>Add to Cart</button>
     </article>
   );
 }

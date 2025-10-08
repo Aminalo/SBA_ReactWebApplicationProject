@@ -1,31 +1,27 @@
 import { Routes, Route, Link } from "react-router-dom";
-import "./styles.css";
-import ProductsPage from "./pages/ProductsPage";
-import CartDrawer from "./components/CartDrawer";
+import ProductsPage from "./pages/ProductsPage.jsx";
+import CartPage from "./pages/CartPage.jsx";
+// 👉 Vite: on importe le SVG, on n’utilise pas src="/src/…"
+import wordmark from "./assets/noirceur-wordmark.svg";
 
-export default function App(){
+export default function App() {
   return (
     <>
-      {/* Site header with Noirceur wordmark */}
       <header className="site">
         <div className="bar">
           <div className="brand">
-            {}
-            <img src="/src/assets/noirceur-wordmark.svg" alt="Noirceur" />
+            <Link to="/"><img src={wordmark} alt="Noirceur" /></Link>
           </div>
-          <Link to="/" className="btn ghost">Cart</Link>
+          {/* plus de bouton Cart dans le header */}
         </div>
       </header>
 
-      {}
       <main className="container">
         <Routes>
-          <Route path="/" element={<ProductsPage/>} />
+          <Route path="/" element={<ProductsPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </main>
-
-      {}
-      <CartDrawer/>
     </>
   );
 }

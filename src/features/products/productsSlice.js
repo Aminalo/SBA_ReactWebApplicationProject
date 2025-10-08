@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchAll } from "../../api/products";
 
-// Load products from API on demand
+const API = "https://fakestoreapi.com/products";
+async function fetchAll(){
+  const res = await fetch(API);
+  if(!res.ok) throw new Error("Failed to load products");
+  return res.json();
+}
+
 export const loadProducts = createAsyncThunk("products/load", fetchAll);
 
 const slice = createSlice({
@@ -12,7 +17,6 @@ const slice = createSlice({
     b.addCase(loadProducts.pending, (s)=>{ s.status="loading"; })
      .addCase(loadProducts.fulfilled, (s,a)=>{ 
         s.status="succeeded";
-        // Keep only men's and women's clothing categories
         s.items = (a.payload || []).filter(p =>
           p.category === "men's clothing" || p.category === "women's clothing"
         );
