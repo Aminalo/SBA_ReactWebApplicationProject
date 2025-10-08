@@ -1,0 +1,21 @@
+:root {
+    --brand-brown: #C9A26C;
+    --text: #111;
+    --bg: #fff;
+    --muted: #777;
+    --radius: 16px;
+}
+
+html,
+body,
+#root {
+    height: 100%
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
+}
+

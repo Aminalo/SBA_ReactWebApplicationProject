@@ -1,0 +1,7 @@
+<svg width="360" height="80" viewBox="0 0 360 80" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .word { font: 700 44px 'Playfair Display', Georgia, 'Times New Roman', serif; fill: #2b211c; letter-spacing: 0.5px; }
+    .accent { fill: #c9a26c; }
+  </style>
+  <text x="8" y="56" class="word">Noir<tspan class="accent">ceur</tspan></text>
+</svg>
