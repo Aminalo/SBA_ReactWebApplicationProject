@@ -133,8 +133,13 @@ header .brand {
     gap: .75rem
 }
 
-header .brand img {
-    height: 22px;
-    display: block
-}
+header .brand img { height: 36px; display: block; }
+@media (max-width: 640px) { header .brand img { height: 28px; } }
 
+/* Small quantity badge shown next to "Cart" */
+.badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:18px; height:18px; padding:0 6px; border-radius:999px;
+  background:#111; color:#fff; font-size:12px; line-height:1; font-weight:700;
+  margin-left:6px;
+}
