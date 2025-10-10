@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cart/cartSlice.js";
-import { useNavigate } from "react-router-dom";
 import SizeSelector from "./SizeSelector.jsx";
 
 export default function ProductCard({ product }) {
   const [size, setSize] = useState("M");
+  const [added, setAdded] = useState(false); // optional feedback
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleAdd = () => {
     dispatch(addToCart({
@@ -17,7 +16,9 @@ export default function ProductCard({ product }) {
       image: product.image,
       size
     }));
-    navigate("/cart");
+    //  (no redirect)
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1200);
   };
 
   return (
@@ -29,7 +30,11 @@ export default function ProductCard({ product }) {
       <p style={{ color: "var(--muted)", margin: "0 0 8px" }}>{product.category}</p>
       <p style={{ fontWeight: 700, margin: "0 0 8px" }}>${product.price}</p>
       <SizeSelector value={size} onChange={setSize} />
-      <button className="btn" onClick={handleAdd}>Add to Cart</button>
+
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <button className="btn" onClick={handleAdd}>Add to Cart</button>
+        {added && <span style={{ fontSize: 12, color: "var(--brand-brown)" }}>Added!</span>}
+      </div>
     </article>
   );
 }

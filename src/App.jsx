@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
-// 👉 Vite: import the SVG file (correct)
+// 👉 Vite: import the SVG file 
 import wordmark from "./assets/noirceur-wordmark.svg";
 import { useSelector } from "react-redux";
 
@@ -19,7 +19,7 @@ export default function App() {
             <Link to="/"><img src={wordmark} alt="Noirceur" /></Link>
           </div>
 
-          {/* ✅ Cart link visible in the navbar, with badge if not empty */}
+          {}
           <Link to="/cart" className="btn ghost" aria-label="Open cart">
             Cart {totalQty > 0 && <span className="badge">{totalQty}</span>}
           </Link>
